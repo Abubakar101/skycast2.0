@@ -34,7 +34,7 @@ app.use(logger("dev"));
 // app.use('/api', skyRoute);
 
 const skyHelpers = require("./controllers/skyHelpers");
-skyHelpers.get("/", skyHelpers.getDarkSky, () => {
+skyHelpers.get("/", skyHelpers.getDarkSky, (req, res) => {
   console.log("NEXT call");
 });
 
