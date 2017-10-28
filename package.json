@@ -1,0 +1,26 @@
+{
+  "name": "skycast2.0",
+  "version": "1.0.0",
+  "description": "React with Node.js, using Dark Sky API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abubakar101/skycast2.0.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abubakar101/skycast2.0/issues"
+  },
+  "homepage": "https://github.com/Abubakar101/skycast2.0#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "logger": "0.0.1",
+    "path": "^0.12.7"
+  }
+}
