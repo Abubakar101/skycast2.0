@@ -1,3 +1,20 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #141f24;
+  padding: 18px;
+}
+
+.colorMenu, .navDate{
+  color: #cfd8dc;
+}
+
+.navDate{
+  margin: 0 auto;
+  font-size: 23px;
+}
+
 .homeContainer{
   display: flex;
   flex-direction: column;
