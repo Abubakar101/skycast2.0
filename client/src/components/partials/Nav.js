@@ -19,7 +19,7 @@ class nav extends Component {
     return (
         <header>
         <i className="fa fa-bars fa-lg colorMenu" aria-hidden="true"></i>
-        <span className="navDate ">{this.navDate()}</span>
+        <span className="navDate ">{(this.props.showSnowMan === false) && this.navDate()}</span>
         </header>
     )
   }
