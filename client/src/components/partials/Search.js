@@ -31,7 +31,7 @@ class search extends Component {
       <div className="searchLayer">
         <div className="searchContainer">{this.state.searchInputValue}</div>
 
-        <div className="searchBar">
+        <div className="searchBar"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
           <input type="text" placeholder="Where are you?" className="searchInput" name="searchInput" />
         </div>
 
@@ -41,6 +41,7 @@ class search extends Component {
                 return <li>{list}</li>; })}
           </ul>
         </div>
+        <div className="searchBottom"></div>
       </div>
     );
   }
