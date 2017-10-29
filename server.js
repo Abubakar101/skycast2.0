@@ -30,7 +30,7 @@ app.use(logger("dev"));
 
 
 const skyHelpers = require("./services/skyHelpers");
-app.get("/", skyHelpers.getDarkApi, function (req, res) {
+app.get("/", skyHelpers, (req, res) => {
     res.json(res.locals.data);
 //   console.log("API DATA :", res.locals.data);
 });

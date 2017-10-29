@@ -8,7 +8,7 @@ function getDarkApi(req, res, next) {
       return res.json();
     })
     .then(jsonRes => {
-      console.log("FETCH FETCH FETCH FETCH FETCH ", jsonRes)
+      console.log("FETCH FETCH FETCH FETCH FETCH ", jsonRes);
       res.locals.data = jsonRes;
       next();
     })
@@ -18,4 +18,4 @@ function getDarkApi(req, res, next) {
     });
 }
 
-module.exports = { getDarkApi };
+module.exports = getDarkApi;
