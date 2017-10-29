@@ -1,14 +1,14 @@
 // Dependences
 const express = require("express");
 const logger = require("morgan");
-const Path = require("path");
-const bodyParser = require("body-parser");
+const path = require("path");
+// const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 // Port for listening
 app.listen(PORT, () => {
@@ -16,26 +16,23 @@ app.listen(PORT, () => {
 });
 
 // Body Parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 // Logger
 app.use(logger("dev"));
 
-// Static file path
-// app.use(express.static('public'));
+
 
 // For Heroku Build up
 // (process.env.NODE_ENV === 'production')
 // app.use(express.static('client/build'));
 
-// Routes
-// const skyRoute = require('./routes/skyroutes');
-// app.use('/api', skyRoute);
 
-const skyHelpers = require("./controllers/skyHelpers");
-skyHelpers.get("/", skyHelpers.getDarkSky, (req, res) => {
-  console.log("NEXT call");
+const skyHelpers = require("./services/skyHelpers");
+app.get("/", skyHelpers.getDarkApi, function (req, res) {
+    res.json(res.locals.data);
+//   console.log("API DATA :", res.locals.data);
 });
 
 // // Index
