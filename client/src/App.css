@@ -23,6 +23,7 @@ header {
   margin: 11% auto;
 }
 
+/* Snow man */
 .logo{
   background-image: url("../src/assets/logo.png");
   background-position: 50% 30%;
@@ -38,6 +39,7 @@ header {
   color: #7dcbc4;
 }
 
+/* Add button - right-bottom-corner */
 .addItem {
   height: 75px;
   width: 75px;
@@ -54,4 +56,51 @@ header {
   -webkit-box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.45);
   cursor: pointer;
+}
+
+
+/* Search Form */
+.searchBar {
+  background: #3ba497;
+  width: 497px;
+  padding: 34px;
+  border-radius: 5px 5px 0px 0px;
+  text-align: center;
+}
+
+.searchBar input {
+  width: 453px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid white;
+  padding-left: 29px;
+  color: white;
+  font-size: 20px;
+  padding-bottom: 4px;
+}
+
+.searchResults ul {
+  background: white;
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+.searchResults li {
+  color: #8e9496;
+  padding: 17px;
+  font-size: 20px;
+  padding-left: 31px;
+  border-bottom: 2.3px solid #e7eaed;
+  cursor: pointer;
+}
+
+.searchLayer {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
