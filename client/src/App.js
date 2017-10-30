@@ -18,13 +18,9 @@ class App extends Component {
   submitData(e) {
     e.preventDefault();
     console.log("Submit DATA", e.target.searchInput.value);
-    axios({
-      method: "POST",
-      url: "http://localhost:3001/",
-      userInput: e.target.searchInput.value
-    })
-      .then(res => {
-        console.log("-----------");
+    axios
+      .post("http://localhost:3001/", {
+        userInput: e.target.searchInput.value
       })
       .catch(err => console.log(err));
   }

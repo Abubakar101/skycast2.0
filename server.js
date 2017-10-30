@@ -2,7 +2,7 @@
 const express = require("express");
 const logger = require("morgan");
 const path = require("path");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
@@ -16,23 +16,30 @@ app.listen(PORT, () => {
 });
 
 // Body Parser
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Logger
 app.use(logger("dev"));
-
-
 
 // For Heroku Build up
 // (process.env.NODE_ENV === 'production')
 // app.use(express.static('client/build'));
 
-
+// Darkapi json data
 const skyHelpers = require("./services/skyHelpers");
 app.get("/", skyHelpers, (req, res) => {
-    res.json(res.locals.data);
-//   console.log("API DATA :", res.locals.data);
+  res.json(res.locals.data);
+});
+
+// User input from REACT
+app.post("/", (req, res) => {
+  console.log("FRONT REACT DATa :", req.body.userInput);
+  
+  // Converting UserInput information to Latitude and Longitude
+  const geocodeApi = require("./services/geocoding");
+  geocodeApi(req.body.userInput)
+
 });
 
 // // Index
