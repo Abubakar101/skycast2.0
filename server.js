@@ -33,7 +33,7 @@ app.use(logger("dev"));
 // Darkapi json data
 const geocodeApi = require("./services/geocoding");
 const skyHelpers = require("./services/skyHelpers");
-app.all('/', geocodeApi, skyHelpers, (req, res) => {
+app.use('/', geocodeApi, skyHelpers, (req, res) => {
   console.log("FRONT REACT DATa :", req.body.userInput);
   console.log(`JSON FORMAT DATA JASON FORMAT DATA`, res.locals.data);
   res.json(res.locals.data);

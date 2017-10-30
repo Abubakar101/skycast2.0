@@ -10,9 +10,10 @@ class App extends Component {
     super();
     this.state = {
       showSearch: false,
-      showSnowMan: true
+      showSnowMan: true,
+      darkskyData: null
     };
-    // this.showSearch = this.showSearch.bind(this);
+    this.submitData = this.submitData.bind(this);
   }
 
   submitData(e) {
@@ -21,6 +22,12 @@ class App extends Component {
     axios
       .post("http://localhost:3001/", {
         userInput: e.target.searchInput.value
+      })
+      .then(res => {
+        this.setState({
+          darkskyData: res.data
+        });
+        console.log("STATE DARK SKY API DATA", this.state.darkskyData);
       })
       .catch(err => console.log(err));
   }
