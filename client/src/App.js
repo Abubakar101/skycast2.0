@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Nav from "./components/partials/Nav";
 import Search from "./components/partials/Search";
 import "./App.css";
+import axios from "axios";
 
 class App extends Component {
   constructor() {
@@ -13,15 +14,39 @@ class App extends Component {
     };
     // this.showSearch = this.showSearch.bind(this);
   }
+
+  submitData(e) {
+    e.preventDefault();
+    console.log("Submit DATA", e.target.searchInput.value);
+    axios({
+      method: "POST",
+      url: "http://localhost:3001/",
+      userInput: e.target.searchInput.value
+    })
+      .then(res => {
+        console.log("-----------");
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="mainContainer">
-        <Nav showSnowMan={this.state.showSnowMan}/>
-        {(this.state.showSnowMan === true) && <Home />}
-        {(this.state.showSearch === true) && <Search />}
+        <Nav showSnowMan={this.state.showSnowMan} />
+        {this.state.showSnowMan === true && <Home />}
+        {this.state.showSearch === true && (
+          <Search submitData={this.submitData} />
+        )}
 
-        <div className="addItem" onClick={() => {this.setState({ showSearch: true, showSnowMan: false });}}
-        > + </div>
+        <div
+          className="addItem"
+          onClick={() => {
+            this.setState({ showSearch: true, showSnowMan: false });
+          }}
+        >
+          {" "}
+          +{" "}
+        </div>
       </div>
     );
   }

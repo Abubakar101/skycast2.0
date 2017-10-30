@@ -63,7 +63,6 @@ header {
 .searchBar {
   display: flex;
   flex-direction: row;
-  align-items: center;
   background: #3ba497;
   box-sizing: border-box;
   width: 50%;
@@ -80,16 +79,26 @@ header {
 
 .fa-search{
   color: #cfd8dc;
+  margin-right: -28px;
+  margin-left: 20px;
 }
-.searchBar input {
+.searchBar Input {
   width: 90%;
   background: transparent;
   border: 0;
   border-bottom: 1px solid #cfd8dc;
-  padding-left: 29px;
+  padding-left: 45px;
   color: #cfd8dc;
-  font-size: 20px;
+  font-size: 25px;
   padding-bottom: 4px;
+}
+
+.searchBar Input::placeholder { 
+  color: white;
+  opacity: 0.3;
+}
+.searchBar Input:focus{
+  outline: none;
 }
 
 .searchResults{

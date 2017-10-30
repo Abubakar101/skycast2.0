@@ -5,15 +5,11 @@ class search extends Component {
     super();
     this.state = {
       searchInputValue: "",
-      searchResultsArr: [
-        "Result Go Here One",
-        "Result Go Here Second",
-        "Result Go Here Third",
-        "Result Go Here Fourth"
-      ]
+      searchResultsArr: []
     };
 
     // this.checkClickTarget = this.checkClickTarget.bind(this);
+    console.log("Search array values", this.state.searchResultsArr)
   }
 
   //   checkClickTarget(e) {
@@ -31,14 +27,15 @@ class search extends Component {
       <div className="searchLayer">
         <div className="searchContainer">{this.state.searchInputValue}</div>
 
-        <div className="searchBar"><i class="fa fa-search fa-lg" aria-hidden="true"></i>
+        <form className="searchBar" autoComplete="off" onSubmit={e => this.props.submitData(e) & this.setState({searchResultsArr: this.state.searchResultsArr.concat(e.target.searchInput.value)  })}><i className="fa fa-search fa-2x" aria-hidden="true"></i>
           <input type="text" placeholder="Where are you?" className="searchInput" name="searchInput" />
-        </div>
+          <button type="submit" style={{display: 'none'}}> </button>
+        </form>
 
         <div className="searchResults">
           <ul>
-            {this.state.searchResultsArr.map(list => { 
-                return <li>{list}</li>; })}
+            {this.state.searchResultsArr.map((list,i) => { 
+                return <li key={i}>{list}</li>; })}
           </ul>
         </div>
         <div className="searchBottom"></div>
