@@ -3,7 +3,10 @@ require("dotenv").config();
 const API_KEY = process.env.API_SECRET_KEY;
 
 function getDarkApi(req, res, next) {
-  fetch(`https://api.darksky.net/forecast/${API_KEY}/37.8267,-122.4233`)
+  console.log(`
+  RES RES RES LAT LAT LAT 
+  ${res.locals.lat} `);
+  fetch(`https://api.darksky.net/forecast/${API_KEY}/${res.locals.lat},${res.locals.lng}`)
     .then(res => {
       return res.json();
     })

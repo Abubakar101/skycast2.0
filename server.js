@@ -26,21 +26,23 @@ app.use(logger("dev"));
 // (process.env.NODE_ENV === 'production')
 // app.use(express.static('client/build'));
 
+
+
+// User input from REACT
+// Converting UserInput information to Latitude and Longitude
 // Darkapi json data
+const geocodeApi = require("./services/geocoding");
 const skyHelpers = require("./services/skyHelpers");
-app.get("/", skyHelpers, (req, res) => {
+app.all('/', geocodeApi, skyHelpers, (req, res) => {
+  console.log("FRONT REACT DATa :", req.body.userInput);
+  console.log(`JSON FORMAT DATA JASON FORMAT DATA`, res.locals.data);
   res.json(res.locals.data);
 });
 
-// User input from REACT
-app.post("/", (req, res) => {
-  console.log("FRONT REACT DATa :", req.body.userInput);
-  
-  // Converting UserInput information to Latitude and Longitude
-  const geocodeApi = require("./services/geocoding");
-  geocodeApi(req.body.userInput)
 
-});
+
+
+
 
 // // Index
 // app.get('/', (req,res) => {
