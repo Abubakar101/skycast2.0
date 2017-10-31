@@ -11,7 +11,8 @@ function geocodeApi(req, res, next) {
       return res.json();
     })
     .then(jsonRes => {
-      // console.log("FETCH geometry FETCH geometry FETCH ", jsonRes);
+      console.log("FETCH geometry FETCH geometry FETCH ", jsonRes);
+      res.locals.name = jsonRes.results["0"].address_components
       res.locals.lat = jsonRes.results["0"].geometry.location.lat;
       res.locals.lng = jsonRes.results["0"].geometry.location.lng;
       console.log(" ----- >>> RES LOCALS LAT", res.locals.lat,"RES LOCALS LNG", res.locals.lng)

@@ -36,7 +36,8 @@ const skyHelpers = require("./services/skyHelpers");
 app.use('/', geocodeApi, skyHelpers, (req, res) => {
   console.log("FRONT REACT DATa :", req.body.userInput);
   console.log(`JSON FORMAT DATA JASON FORMAT DATA`, res.locals.data);
-  res.json(res.locals.data);
+  console.log(`LOCation DATA LOCATION DATA`, res.locals.name);
+  res.json(res.locals);
 });
 
 

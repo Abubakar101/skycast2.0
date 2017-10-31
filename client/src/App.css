@@ -137,3 +137,11 @@ header {
   background-color: #cfd8dc;
   border-radius: 0px 0px 5px 5px; 
 }
+
+/* Results */
+
+.results{
+  height: 275px;
+  width: 30%;
+  background: #f77f00;
+}

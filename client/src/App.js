@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Home from "./components/Home";
+import Results from "./components/Results";
 import Nav from "./components/partials/Nav";
 import Search from "./components/partials/Search";
 import "./App.css";
@@ -11,7 +12,8 @@ class App extends Component {
     this.state = {
       showSearch: false,
       showSnowMan: true,
-      darkskyData: null
+      darkskyData: null,
+      showResults: false
     };
     this.submitData = this.submitData.bind(this);
   }
@@ -25,7 +27,8 @@ class App extends Component {
       })
       .then(res => {
         this.setState({
-          darkskyData: res.data
+          darkskyData: res.data,
+          showResults: true
         });
         console.log("STATE DARK SKY API DATA", this.state.darkskyData);
       })
@@ -37,6 +40,11 @@ class App extends Component {
       <div className="mainContainer">
         <Nav showSnowMan={this.state.showSnowMan} />
         {this.state.showSnowMan === true && <Home />}
+        {this.state.showSnowMan === false &&
+          this.state.showResults === true && (
+            <Results data={this.state.darkskyData} />
+          )}
+
         {this.state.showSearch === true && (
           <Search submitData={this.submitData} />
         )}
