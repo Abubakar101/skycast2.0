@@ -19,7 +19,7 @@ class App extends Component {
       showResults: false,
       showDetailData: false,
       count: 0,
-      DetailData: null
+      DetailData: []
     };
     this.submitData = this.submitData.bind(this);
     this.showResultsComponent = this.showResultsComponent.bind(this);
