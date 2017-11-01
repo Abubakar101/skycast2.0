@@ -9,7 +9,7 @@ class search extends Component {
     };
 
     // this.checkClickTarget = this.checkClickTarget.bind(this);
-    console.log("Search array values", this.state.searchResultsArr)
+    // console.log("Search array values", this.state.searchResultsArr)
   }
 
   //   checkClickTarget(e) {
