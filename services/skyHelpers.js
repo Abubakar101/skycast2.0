@@ -1,6 +1,6 @@
 require("isomorphic-fetch");
 require("dotenv").config();
-const API_KEY = process.env.API_SECRET_KEY;
+const API_KEY = process.env.Darksky_API_KEY;
 
 function getDarkApi(req, res, next) {
   // console.log(`

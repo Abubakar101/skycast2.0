@@ -1,44 +1,100 @@
 import React, { Component } from "react";
+import axios from "axios";
+import $ from "jquery";
+import ReactDOM from "react-dom";
+require("jquery-ui/ui/widgets/sortable");
 
 class search extends Component {
   constructor() {
     super();
     this.state = {
-      searchInputValue: "",
-      searchResultsArr: []
+      searchResultsArr: [],
     };
-
-    // this.checkClickTarget = this.checkClickTarget.bind(this);
-    // console.log("Search array values", this.state.searchResultsArr)
+    this.checkClickTarget = this.checkClickTarget.bind(this);
+    this.fetchPlaces = this.fetchPlaces.bind(this);
+    this.renderSearchList = this.renderSearchList.bind(this);
+    this.handleOnUpdate = this.handleOnUpdate.bind(this);
   }
 
-  //   checkClickTarget(e) {
-  //     if (e.target.className === "searchLayer") {
-  //       this.props.changeState("showSearch", false);
-  //       this.props.changeState("showSnowMan", true);
-  //     }
-  //   }
-  // onClick={e => {
-  //   this.checkClickTarget(e);
-  // }}
+  componentDidMount() {
+    this.$node = $(this.refs.sortable);
+    this.$node.sortable({
+      update: (event, ui) => this.handleOnUpdate(event, ui),
+    });
+  }
+
+  handleOnUpdate(event, ui) {
+    console.log("worinng");
+
+    // this.props.reOrderList(this.getIdsForSort());
+  }
+
+  checkClickTarget(e) {
+    if (e.target.className === "searchLayer") {
+      this.props.changeState("showSearch", false);
+      this.props.darkskyDataLength === 0 &&
+        this.props.changeState("showSnowMan", true);
+    }
+  }
+
+  fetchPlaces(e) {
+    axios
+      .post("http://localhost:7001/googleplaces/", {
+        userInput: e.target.value,
+      })
+      .then(res => {
+        this.setState({
+          searchResultsArr: res.data.places,
+        });
+        // console.log("this NEW ONEEE: ", res);
+      })
+      .catch(err => console.log(err));
+  }
+
+  renderSearchList() {
+    if (this.state.searchResultsArr.length !== 0) {
+      return this.state.searchResultsArr.storeData.map((list, i) => {
+        return (
+          <li
+            onClick={() => {
+              this.props.submitData(list.terms[0].value);
+              this.props.changeState("showSearch", false);
+            }}
+            key={i}
+          >
+            {list.description}
+          </li>
+        );
+      });
+    }
+  }
 
   render() {
     return (
-      <div className="searchLayer">
-        <div className="searchContainer">{this.state.searchInputValue}</div>
-
-        <form className="searchBar" autoComplete="off" onSubmit={e => this.props.submitData(e) & this.setState({searchResultsArr: this.state.searchResultsArr.concat(e.target.searchInput.value)  })}><i className="fa fa-search fa-2x" aria-hidden="true"></i>
-          <input type="text" placeholder="Where are you?" className="searchInput" name="searchInput" />
-          <button type="submit" style={{display: 'none'}}> </button>
+      <div className="searchLayer" onClick={e => this.checkClickTarget(e)}>
+        <form
+          className="searchBar"
+          autoComplete="off"
+          onSubmit={e => {
+            e.preventDefault();
+            this.props.submitData(e.target.searchInput.value);
+            this.props.changeState("showSearch", false);
+          }}
+        >
+          <i className="fa fa-search fa-2x" aria-hidden="true" />
+          <input
+            type="text"
+            placeholder="Where are you?"
+            className="searchInput"
+            name="searchInput"
+            onChange={this.fetchPlaces}
+            placeholder="Please Enter City or Zipcode"
+          />
         </form>
-
         <div className="searchResults">
-          <ul>
-            {this.state.searchResultsArr.map((list,i) => { 
-                return <li key={i}>{list}</li>; })}
-          </ul>
+          <ul ref="sortable">{this.renderSearchList()}</ul>
         </div>
-        <div className="searchBottom"></div>
+        <div className="searchBottom" />
       </div>
     );
   }

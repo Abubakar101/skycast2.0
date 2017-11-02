@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 7001;
 
 // Port for listening
 app.listen(PORT, () => {
@@ -26,24 +26,24 @@ app.use(logger("dev"));
 // (process.env.NODE_ENV === 'production')
 // app.use(express.static('client/build'));
 
-
-
 // User input from REACT
 // Converting UserInput information to Latitude and Longitude
 // Darkapi json data
 const geocodeApi = require("./services/geocoding");
+const googlePlaceAutocomplete = require("./services/googlePlaceAutocomplete");
 const skyHelpers = require("./services/skyHelpers");
-app.use('/', geocodeApi, skyHelpers, (req, res) => {
+
+app.post("/googleplaces/", googlePlaceAutocomplete, function(req, res) {
+  console.log("res.locals.places: ", res.locals.places);
+  res.json(res.locals);
+});
+
+app.post("/", geocodeApi, skyHelpers, (req, res) => {
   console.log("FRONT REACT DATa :", req.body.userInput);
   console.log(`JSON FORMAT DATA JASON FORMAT DATA`, res.locals.data);
   console.log(`LOCation DATA LOCATION DATA`, res.locals.name);
   res.json(res.locals);
 });
-
-
-
-
-
 
 // // Index
 // app.get('/', (req,res) => {

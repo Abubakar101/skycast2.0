@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 
 let divStyle = {
-  backgroundColor: "red"
+  backgroundColor: "red",
 };
 
 class results extends Component {
@@ -11,12 +11,13 @@ class results extends Component {
     this.state = {};
     this.randomColor = this.randomColor.bind(this);
     this.skyIcons = this.skyIcons.bind(this);
+    this.showResultsName = this.showResultsName.bind(this);
   }
 
   componentDidUpdate() {
     console.log("componentDidUpdate ", this.props.darkskyData);
     this.setState({
-      count: this.props.count
+      count: this.props.count,
     });
   }
 
@@ -59,33 +60,67 @@ class results extends Component {
       "#161f24",
       "#ecd428",
       "#537cd7",
-      "#5f78dc"
+      "#5f78dc",
     ];
     let randomValue = colorArr[Math.floor(Math.random() * colorArr.length)];
     let divStyle = {
-      backgroundColor: randomValue
+      backgroundColor: randomValue,
     };
     return divStyle;
+  }
+
+  showResultsName(results) {
+    console.log("results.formatted_address: ", results.formatted_address);
+    let city = undefined,
+      country = undefined,
+      state = undefined;
+    let formatedAddress = results.formatted_address;
+    if (formatedAddress !== undefined) {
+      formatedAddress = formatedAddress.split(",");
+      // debugger;
+      city = formatedAddress[0];
+      country = results.name[results.name.length - 1].long_name;
+
+      let hasNumber = /\d/;
+      if (hasNumber.test(formatedAddress[1])) {
+        if (formatedAddress[1].split(" ")[0] === "") {
+          state = formatedAddress[1].split(" ")[1];
+          console.log("seonc one");
+        } else {
+          state = formatedAddress[1].split(" ")[0];
+        }
+      } else {
+        state = formatedAddress[1];
+      }
+    }
+    // debugger;
+    return (
+      <div className="resultsHead">
+        <span className="resultName">{city} </span>
+        <div className="circle-divider" />
+        <span className="resultName"> {state} </span>
+        <div className="circle-divider" />
+        <span className="resultName"> {country}</span>
+      </div>
+    );
   }
 
   showResultsData() {
     this.skyIcons();
     return this.props.darkskyData.map((results, i) => {
       return (
-        <div
+        <li
           className="resultsBox"
           key={i}
           style={this.randomColor()}
           onClick={() => {
-            this.props.showDetailDataState(results);
+            this.props.changeState("DetailData", results);
+            this.props.changeState("showDetailData", true);
+            this.props.changeState("showResults", false);
             console.log(this.props.darkskyData);
           }}
         >
-          <div className="resultsHead">
-            <span>{results.name[1].long_name} .</span>
-            <span> {results.name[3].short_name} .</span>
-            <span> {results.name[4].short_name}</span>
-          </div>
+          <div className="resultsHead">{this.showResultsName(results)}</div>
           <div className="resultsBody">
             <canvas id={results.data.currently.icon} width="128" height="128" />
             <span>{results.data.currently.temperature}&#176;</span>
@@ -99,13 +134,13 @@ class results extends Component {
               H {results.data.daily.data[3].apparentTemperatureHigh}&#176;
             </span>
           </div>
-        </div>
+        </li>
       );
     });
   }
 
   render() {
-    return <div className="results">{this.showResultsData()}</div>;
+    return <ul className="results">{this.showResultsData()}</ul>;
   }
 }
 

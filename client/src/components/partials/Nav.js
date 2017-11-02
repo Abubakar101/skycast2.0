@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 class nav extends Component {
     constructor() {
         super();
-        this.state = {
-          date: null,
-        };
         this.navDate = this.navDate.bind(this);
       }
     
@@ -19,7 +16,7 @@ class nav extends Component {
     return (
         <header>
         <i className="fa fa-bars fa-lg colorMenu" aria-hidden="true"></i>
-        <span className="navDate ">{(this.props.showSnowMan === false) && this.navDate()}</span>
+        <span className="navDate ">{!this.props.showSnowMan && this.navDate()}</span>
         </header>
     )
   }

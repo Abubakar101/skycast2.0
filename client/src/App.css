@@ -1,3 +1,11 @@
+html,
+body,
+#root,
+.mainContainer {
+  height: 100%;
+  margin: 0;
+}
+
 a {
   text-decoration: none;
   color: white;
@@ -12,34 +20,39 @@ header {
   height: 65px;
 }
 
-.colorMenu, .navDate{
+.colorMenu,
+.navDate {
   color: #cfd8dc;
 }
 
-.navDate{
+.navDate {
   margin: 0 auto;
   font-size: 23px;
 }
 
-.homeContainer{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 11% auto;
+.mainContainer {
+  height: 100%;
 }
 
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 91.8%;
+}
 /* Snow man */
-.logo{
+.logo {
   background-image: url("../src/assets/logo.png");
   background-position: 50% 30%;
   background-repeat: no-repeat;
   background-size: 45%;
   height: 310px;
   width: 30%;
-  margin: 0 auto;
 }
 
-.homeText{
+.homeText {
   font-size: 140%;
   color: #7dcbc4;
 }
@@ -63,7 +76,6 @@ header {
   cursor: pointer;
 }
 
-
 /* Search Form */
 .searchBar {
   display: flex;
@@ -80,14 +92,12 @@ header {
   margin-top: -25px;
 }
 
-
-
-.fa-search{
+.fa-search {
   color: #cfd8dc;
   margin-right: -28px;
   margin-left: 20px;
 }
-.searchBar Input {
+.searchBar input {
   width: 90%;
   background: transparent;
   border: 0;
@@ -98,15 +108,15 @@ header {
   padding-bottom: 4px;
 }
 
-.searchBar Input::placeholder { 
+.searchBar input::placeholder {
   color: white;
   opacity: 0.3;
 }
-.searchBar Input:focus{
+.searchBar input:focus {
   outline: none;
 }
 
-.searchResults{
+.searchResults {
   width: 50%;
   opacity: 0.9;
 }
@@ -133,20 +143,123 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 750px;
+  position: absolute;
+  top: 65px;
+  bottom: 0;
 }
 
-.searchBottom{
+.searchBottom {
   height: 100px;
   width: 50%;
   background-color: #cfd8dc;
-  border-radius: 0px 0px 5px 5px; 
+  border-radius: 0px 0px 5px 5px;
 }
 
 /* Results */
 
-.results{
-  height: 275px;
-  width: 30%;
-  /* background: #f77f00; */
+.results {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-left: 17px;
+  padding-right: 17px;
+  list-style: none;
+}
+
+.resultsBox {
+  cursor: pointer;
+  border-radius: 5px;
+  height: 301px;
+  color: white;
+  width: 300px;
+  margin: 4px;
+  margin-top: 20px;
+}
+
+.circle-divider {
+  border-radius: 100%;
+  font-size: 6px;
+  position: absolute;
+  margin-top: 11px;
+  display: inline-block;
+  background: white;
+  height: 2px;
+  width: 2px;
+}
+.resultsHead {
+  text-align: center;
+}
+.resultsHead .resultName:first-child {
+  padding-right: 10px;
+}
+
+.resultsHead .resultName:nth-of-type(2) {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.resultsHead .resultName:nth-of-type(3) {
+  padding-left: 10px;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: center;
+  word-spacing: 2em;
+  font-size: 23px;
+  padding: 0.4em;
+  background: #f7412d;
+}
+
+.resultsTopDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+.resultsLeftSideDiv {
+  background: blue;
+  padding: 2em;
+  display: flex;
+  flex-direction: inherit;
+}
+
+.resultsLeftLeftSide {
+  background: red;
+  display: flex;
+  justify-content: center;
+}
+
+.resultsLeftRightSide {
+  background: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.resultsRightTopSide {
+  background: pink;
+  padding: 2em;
+  display: flex;
+  flex-direction: inherit;
+}
+
+.resultsBottomDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4em;
+  font-size: 22px;
+}
+
+.hours {
+  display: flex;
+  justify-content: space-around;
+  word-spacing: 8em;
+  width: 100%;
+  background: red;
+}
+.halfDay {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background: blue;
 }
