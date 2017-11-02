@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
 
 // For Heroku Build up
-(process.env.NODE_ENV === 'production')
-app.use(express.static('client/build'));
+
+app.use(express.static(path.join(__dirname, "client/build")));
 
 // User input from REACT
 // Converting UserInput information to Latitude and Longitude
