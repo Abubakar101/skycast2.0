@@ -39,7 +39,7 @@ class search extends Component {
 
   fetchPlaces(e) {
     axios
-      .post("http://localhost:7001/googleplaces/", {
+      .post("/googleplaces/", {
         userInput: e.target.value,
       })
       .then(res => {

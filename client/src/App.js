@@ -34,7 +34,7 @@ class App extends Component {
   submitData(e) {
     console.log("Submit DATA", e);
     axios
-      .post("http://localhost:7001/", {
+      .post("/", {
         userInput: e,
       })
       .then(res => {
