@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --inspect server.js",
     "start": "node server.js",
-    "debugger": "DEBUG=*:* npm run dev"
+    "debugger": "DEBUG=*:* npm run dev",
+    "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "author": "Muhammad Abubakar",
   "license": "ISC",
